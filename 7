@@ -1,0 +1,89 @@
+package fortests_001;
+ 
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+ 
+public class ForTests_001 {
+ 
+    public static void main(String[] args) {
+        NewJDialog dlg = new NewJDialog(null, true);
+        dlg.setLocationRelativeTo(null);
+        dlg.setVisible(true);
+    }
+ 
+}
+ 
+class NewJDialog extends javax.swing.JDialog {
+ 
+    private javax.swing.JPanel jPanel1;
+ 
+    public NewJDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+    }
+ 
+    @SuppressWarnings("unchecked")
+ 
+    private void initComponents() {
+ 
+        jPanel1 = new Map(3);
+ 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+ 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 430, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 349, Short.MAX_VALUE)
+        );
+ 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+ 
+        pack();
+    }
+}
+ 
+class Map extends JPanel {
+ 
+    private final int linesCount;
+ 
+    public Map(int linesCount) {
+        this.linesCount = linesCount;
+//        field = new int[linesCount][linesCount];
+    }
+ 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+ 
+        setBackground(Color.white);
+        g.setColor(Color.BLACK);
+ 
+        int cellWidth = getWidth() / linesCount;
+        int cellHeight = getHeight() / linesCount;
+        for (int i = 1; i < linesCount; i++) {
+            g.drawLine(i * cellWidth, 0, i * cellWidth, getHeight());
+            g.drawLine(0, i * cellHeight, getWidth(), i * cellHeight);
+        }
+    }
+}
